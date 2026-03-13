@@ -37,6 +37,7 @@ graph TD
     OrdersDB
   end
 ```
+(mermaid fait par ia)
 
 ## Réseaux
 

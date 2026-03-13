@@ -1,5 +1,3 @@
-# Microservices from Scratch - JS/Next.js
-
 Plateforme e-commerce simple avec 3 APIs, un gateway Nginx et un frontend Next.js.
 
 ## Services
@@ -13,9 +11,7 @@ Plateforme e-commerce simple avec 3 APIs, un gateway Nginx et un frontend Next.j
 
 ## Lancement
 
-```bash
-docker compose up --build
-```
+docker compose up --build (sur docker desktop vérifier que le front est bien lancé ainsi que le reste des conteneurs)
 
 ## Accès
 
@@ -27,10 +23,6 @@ Exemples :
 - http://localhost/api/users
 - http://localhost/api/products
 - http://localhost/api/orders
-
-## Env
-
-Modifie `.env` si besoin.
 
 ## Docs
 
