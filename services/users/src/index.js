@@ -2,12 +2,12 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { Pool } = require("pg");
 
-const PORT = parseInt(process.env.PORT || "5001", 10);
-const DB_HOST = process.env.DB_HOST || "users-db";
-const DB_PORT = parseInt(process.env.DB_PORT || "5432", 10);
-const DB_NAME = process.env.DB_NAME || "users";
-const DB_USER = process.env.DB_USER || "users";
-const DB_PASSWORD = process.env.DB_PASSWORD || "users";
+const PORT = parseInt(process.env.PORT, 10);
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = parseInt(process.env.DB_PORT, 10);
+const DB_NAME = process.env.DB_NAME;
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 
 const app = express();
 app.use(express.json());
