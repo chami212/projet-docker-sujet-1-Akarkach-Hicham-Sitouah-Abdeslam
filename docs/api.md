@@ -1,8 +1,7 @@
-# API Documentation
+# Documentation API
 
-Base URL (via gateway): `http://localhost` on port 80.
-
-All API routes are under `/api` on the gateway.
+Base (via gateway) : `http://localhost` (port 80).
+Toutes les routes passent par `/api`.
 
 ## Users
 
@@ -14,7 +13,7 @@ All API routes are under `/api` on the gateway.
 - POST `/api/users/login`
 - GET `/api/users/health`
 
-Payload example (create user):
+Exemple (create user) :
 
 ```json
 {
@@ -33,7 +32,7 @@ Payload example (create user):
 - DELETE `/api/products/{id}`
 - GET `/api/products/health`
 
-Payload example (create product):
+Exemple (create product) :
 
 ```json
 {
@@ -51,7 +50,7 @@ Payload example (create product):
 - POST `/api/orders`
 - GET `/api/orders/health`
 
-Payload example (create order):
+Exemple (create order) :
 
 ```json
 {
@@ -63,5 +62,5 @@ Payload example (create order):
 
 ## Notes
 
-- Orders service calls Products service to validate product, check stock, compute total, and decrement stock.
-- Only the gateway is exposed externally; APIs are internal.
+- Orders appelle Products pour verifier le produit, le stock, calculer le total et decrementer le stock.
+- Seul le gateway est expose; les APIs restent internes.

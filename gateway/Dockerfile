@@ -1,10 +1,11 @@
 FROM nginxinc/nginx-unprivileged:1.25-alpine
 
-USER root
-RUN apk add --no-cache wget
+LABEL maintainer="student" \
+      version="0.1.0"
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
 USER nginx
+EXPOSE 8080
 
-EXPOSE 80
+HEALTHCHECK --interval=10s --timeout=3s --retries=5 CMD /bin/busybox wget -q -O - http://localhost:8080/health || exit 1

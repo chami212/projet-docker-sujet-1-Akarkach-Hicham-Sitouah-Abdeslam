@@ -108,18 +108,18 @@ export default function Home() {
 
   return (
     <main style={{ maxWidth: 900, margin: "32px auto", fontFamily: "Arial, sans-serif" }}>
-      <h1>Mini E-commerce</h1>
-      <p>Gateway base: {apiBase}</p>
+      <h1>Mini e-commerce</h1>
+      <p>Base API : {apiBase}</p>
       {error && (
         <div style={{ marginBottom: 16, color: "#b00020" }}>
           {error}
         </div>
       )}
 
-      <Section title="Users">
+      <Section title="Utilisateurs">
         <form onSubmit={createUser} style={{ marginBottom: 16 }}>
           <input
-            placeholder="username"
+            placeholder="pseudo"
             value={userForm.username}
             onChange={(e) => setUserForm({ ...userForm, username: e.target.value })}
           />{" "}
@@ -129,12 +129,12 @@ export default function Home() {
             onChange={(e) => setUserForm({ ...userForm, email: e.target.value })}
           />{" "}
           <input
-            placeholder="password"
+            placeholder="mot de passe"
             type="password"
             value={userForm.password}
             onChange={(e) => setUserForm({ ...userForm, password: e.target.value })}
           />{" "}
-          <button type="submit">Create user</button>
+          <button type="submit">Creer utilisateur</button>
         </form>
         <ul>
           {users.map((u) => (
@@ -145,15 +145,15 @@ export default function Home() {
         </ul>
       </Section>
 
-      <Section title="Products">
+      <Section title="Produits">
         <form onSubmit={createProduct} style={{ marginBottom: 16 }}>
           <input
-            placeholder="name"
+            placeholder="nom"
             value={productForm.name}
             onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
           />{" "}
           <input
-            placeholder="price"
+            placeholder="prix"
             value={productForm.price}
             onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
           />{" "}
@@ -162,7 +162,7 @@ export default function Home() {
             value={productForm.stock}
             onChange={(e) => setProductForm({ ...productForm, stock: e.target.value })}
           />{" "}
-          <button type="submit">Create product</button>
+          <button type="submit">Creer produit</button>
         </form>
         <ul>
           {products.map((p) => (
@@ -173,7 +173,7 @@ export default function Home() {
         </ul>
       </Section>
 
-      <Section title="Orders">
+      <Section title="Commandes">
         <form onSubmit={createOrder} style={{ marginBottom: 16 }}>
           <input
             placeholder="user_id"
@@ -186,16 +186,16 @@ export default function Home() {
             onChange={(e) => setOrderForm({ ...orderForm, product_id: e.target.value })}
           />{" "}
           <input
-            placeholder="quantity"
+            placeholder="quantite"
             value={orderForm.quantity}
             onChange={(e) => setOrderForm({ ...orderForm, quantity: e.target.value })}
           />{" "}
-          <button type="submit">Create order</button>
+          <button type="submit">Creer commande</button>
         </form>
         <ul>
           {orders.map((o) => (
             <li key={o.id}>
-              order {o.id} - user {o.user_id} - product {o.product_id} - qty {o.quantity} - total {o.total_price}
+              commande {o.id} - user {o.user_id} - produit {o.product_id} - qte {o.quantity} - total {o.total_price}
             </li>
           ))}
         </ul>

@@ -1,8 +1,8 @@
 # Architecture
 
-This project is a simple e-commerce platform using a microservices architecture with Docker Compose.
+Plateforme e-commerce simple en microservices, orchestrée avec Docker Compose.
 
-## Diagram (Mermaid)
+## Schéma (Mermaid)
 
 ```mermaid
 graph TD
@@ -38,7 +38,7 @@ graph TD
   end
 ```
 
-## Networks
+## Réseaux
 
-- `ecommerce-network` connects gateway, frontend, and APIs.
-- `users-db-net`, `products-db-net`, `orders-db-net` are internal networks, isolating each database.
+- `ecommerce-network` relie gateway, frontend et APIs.
+- `users-db-net`, `products-db-net`, `orders-db-net` isolent chaque base.

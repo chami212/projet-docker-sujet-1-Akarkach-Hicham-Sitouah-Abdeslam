@@ -1,41 +1,38 @@
 # Microservices from Scratch - JS/Next.js
 
-This repo contains a simple e-commerce platform with 3 APIs, an Nginx gateway, and a Next.js frontend.
+Plateforme e-commerce simple avec 3 APIs, un gateway Nginx et un frontend Next.js.
 
 ## Services
 
-- Gateway (Nginx) on port 80
-- Users API on port 5001 (internal)
-- Products API on port 5002 (internal)
-- Orders API on port 5003 (internal)
-- Frontend (Next.js) on port 3000
-- Postgres DB per service
+- Gateway (Nginx) : port 80
+- Users API : 5001 (interne)
+- Products API : 5002 (interne)
+- Orders API : 5003 (interne)
+- Frontend (Next.js) : 3000
+- 1 base Postgres par service
 
-## Run
-
-1. Ensure Docker is running.
-2. Start everything:
+## Lancement
 
 ```bash
 docker compose up --build
 ```
 
-## Access
+## Accès
 
-- Frontend: http://localhost:3000
-- Gateway base: http://localhost
+- Frontend : http://localhost:3000
+- API (via gateway) : http://localhost
 
-Example:
+Exemples :
 
 - http://localhost/api/users
 - http://localhost/api/products
 - http://localhost/api/orders
 
-## Environment
+## Env
 
-Edit `.env` to change database names or credentials.
+Modifie `.env` si besoin.
 
 ## Docs
 
-- Architecture: `docs/architecture.md`
-- API: `docs/api.md`
+- Architecture : `docs/architecture.md`
+- API : `docs/api.md`
