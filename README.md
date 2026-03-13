@@ -1,4 +1,4 @@
-Plateforme e-commerce simple avec 3 APIs, un gateway Nginx et un frontend Next.js.
+Plateforme e-commerce simple avec 3 APIs, un gateway Nginx et un frontend Next.js par Akarkach Hicham et Sitouah Abdeslam
 
 ## Services
 
