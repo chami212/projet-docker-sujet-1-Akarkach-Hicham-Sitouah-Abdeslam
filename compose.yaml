@@ -1,0 +1,157 @@
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "80:8080"
+    depends_on:
+      users:
+        condition: service_healthy
+      products:
+        condition: service_healthy
+      orders:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      gateway:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+    restart: unless-stopped
+
+  users:
+    build: ./services/users
+    env_file: .env
+    environment:
+      - PORT=5001
+      - DB_HOST=users-db
+      - DB_PORT=5432
+      - DB_NAME=${USERS_DB_NAME}
+      - DB_USER=${USERS_DB_USER}
+      - DB_PASSWORD=${USERS_DB_PASSWORD}
+    expose:
+      - "5001"
+    depends_on:
+      users-db:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+      - users-db-net
+    restart: unless-stopped
+
+  users-db:
+    image: postgres:16-alpine
+    env_file: .env
+    environment:
+      - POSTGRES_DB=${USERS_DB_NAME}
+      - POSTGRES_USER=${USERS_DB_USER}
+      - POSTGRES_PASSWORD=${USERS_DB_PASSWORD}
+    volumes:
+      - users-db-data:/var/lib/postgresql/data
+    networks:
+      - users-db-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${USERS_DB_USER} -d ${USERS_DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  products:
+    build: ./services/products
+    env_file: .env
+    environment:
+      - PORT=5002
+      - DB_HOST=products-db
+      - DB_PORT=5432
+      - DB_NAME=${PRODUCTS_DB_NAME}
+      - DB_USER=${PRODUCTS_DB_USER}
+      - DB_PASSWORD=${PRODUCTS_DB_PASSWORD}
+    expose:
+      - "5002"
+    depends_on:
+      products-db:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+      - products-db-net
+    restart: unless-stopped
+
+  products-db:
+    image: postgres:16-alpine
+    env_file: .env
+    environment:
+      - POSTGRES_DB=${PRODUCTS_DB_NAME}
+      - POSTGRES_USER=${PRODUCTS_DB_USER}
+      - POSTGRES_PASSWORD=${PRODUCTS_DB_PASSWORD}
+    volumes:
+      - products-db-data:/var/lib/postgresql/data
+    networks:
+      - products-db-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PRODUCTS_DB_USER} -d ${PRODUCTS_DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  orders:
+    build: ./services/orders
+    env_file: .env
+    environment:
+      - PORT=5003
+      - DB_HOST=orders-db
+      - DB_PORT=5432
+      - DB_NAME=${ORDERS_DB_NAME}
+      - DB_USER=${ORDERS_DB_USER}
+      - DB_PASSWORD=${ORDERS_DB_PASSWORD}
+      - PRODUCTS_URL=http://products:5002
+    expose:
+      - "5003"
+    depends_on:
+      orders-db:
+        condition: service_healthy
+      products:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+      - orders-db-net
+    restart: unless-stopped
+
+  orders-db:
+    image: postgres:16-alpine
+    env_file: .env
+    environment:
+      - POSTGRES_DB=${ORDERS_DB_NAME}
+      - POSTGRES_USER=${ORDERS_DB_USER}
+      - POSTGRES_PASSWORD=${ORDERS_DB_PASSWORD}
+    volumes:
+      - orders-db-data:/var/lib/postgresql/data
+    networks:
+      - orders-db-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${ORDERS_DB_USER} -d ${ORDERS_DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  users-db-data:
+  products-db-data:
+  orders-db-data:
+
+networks:
+  ecommerce-network:
+  users-db-net:
+    internal: true
+  products-db-net:
+    internal: true
+  orders-db-net:
+    internal: true
