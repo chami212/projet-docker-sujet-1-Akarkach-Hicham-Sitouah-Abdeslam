@@ -1,12 +1,12 @@
 const express = require("express");
 const { Pool } = require("pg");
 
-const PORT = parseInt(process.env.PORT || "5002", 10);
-const DB_HOST = process.env.DB_HOST || "products-db";
-const DB_PORT = parseInt(process.env.DB_PORT || "5432", 10);
-const DB_NAME = process.env.DB_NAME || "products";
-const DB_USER = process.env.DB_USER || "products";
-const DB_PASSWORD = process.env.DB_PASSWORD || "products";
+const PORT = parseInt(process.env.PORT, 10);
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = parseInt(process.env.DB_PORT, 10);
+const DB_NAME = process.env.DB_NAME;
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 
 const app = express();
 app.use(express.json());
