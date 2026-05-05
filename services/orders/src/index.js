@@ -1,7 +1,7 @@
 const express = require("express");
 const { Pool } = require("pg");
 
-const PORT = parseInt(process.env.PORT 10);
+const PORT = parseInt(process.env.PORT, 10);
 const DB_HOST = process.env.DB_HOST;
 const DB_PORT = parseInt(process.env.DB_PORT, 10);
 const DB_NAME = process.env.DB_NAME;
